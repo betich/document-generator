@@ -1,16 +1,54 @@
 import React from "react";
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Font,
+} from "@react-pdf/renderer";
+
+// Register font
+Font.register({
+  family: "TH SarabunPSK",
+  fonts: [
+    {
+      src: "fonts/THSarabun.ttf",
+    },
+    {
+      src: "fonts/THSarabun Bold.ttf",
+      fontWeight: 700,
+    },
+    {
+      src: "fonts/THSarabun Italic.ttf",
+      fontStyle: "italic",
+    },
+    {
+      src: "fonts/THSarabun Bold Italic.ttf",
+      fontWeight: 700,
+      fontStyle: "italic",
+    },
+  ],
+});
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    flexDirection: "row",
-    backgroundColor: "#E4E4E4",
+    backgroundColor: "#fff",
+    fontSize: "14pt",
+    fontFamily: "TH SarabunPSK",
   },
   section: {
-    margin: 10,
+    margin: "10 50",
     padding: 10,
-    flexGrow: 1,
+  },
+  headingImg: {},
+  bold: {
+    fontWeight: "bold",
+  },
+  italic: {
+    fontStyle: "italic",
   },
 });
 
@@ -18,11 +56,12 @@ const styles = StyleSheet.create({
 const MyDocument = () => (
   <Document>
     <Page size="A4" style={styles.page}>
+      <Image src="/assets/header.png" style={styles.headingImg} />
+
       <View style={styles.section}>
-        <Text>Section #1</Text>
-      </View>
-      <View style={styles.section}>
-        <Text>Section #2</Text>
+        <Text>
+          <Text style={styles["bold"]}>ที่</Text> กวศ.7003-0047 / 2566
+        </Text>
       </View>
     </Page>
   </Document>

@@ -15,9 +15,9 @@ export default function Home() {
 
   return (
     <main className="bg-white min-h-screen p-20 text-black space-y-12">
-      <h1>hi</h1>
+      <h1>Document</h1>
       {isClient ? (
-        <div className="space-y-4">
+        <div className="space-y-16">
           <PDFDownloadLink
             className="p-4 shadow-md rounded-md bg-blue-500 text-white"
             document={<MyDocument />}
@@ -26,7 +26,15 @@ export default function Home() {
             download
           </PDFDownloadLink>
 
-          <PDFViewer className="max-w-lg w-full h-full">
+          <PDFViewer
+            style={{
+              // a4
+              aspectRatio: "297mm / 210mm",
+              width: "100%",
+              height: "100%",
+              minHeight: "60vh",
+            }}
+          >
             <MyDocument />
           </PDFViewer>
         </div>
