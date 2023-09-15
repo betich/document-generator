@@ -32,6 +32,8 @@ Font.register({
   ],
 });
 
+Font.registerHyphenationCallback((word) => [word]);
+
 // Create styles
 const styles = StyleSheet.create({
   page: {
@@ -86,11 +88,34 @@ const styles = StyleSheet.create({
   bodyText: {
     textIndent: 70,
     textJustify: "inter-word",
+    wordSpacing: 2,
   },
   lastBodySection: {
     margin: "0 65",
     display: "flex",
     flexDirection: "column",
+  },
+  // signature
+  signatureSection: {
+    margin: "10 65",
+    display: "flex",
+    flexDirection: "column",
+  },
+  signatureText: {
+    textAlign: "center",
+  },
+  presidentSignature: {
+    position: "relative",
+    marginTop: 50,
+    marginLeft: 50,
+  },
+  footerPurpose: {
+    marginLeft: 35,
+  },
+  deanSignature: {
+    position: "relative",
+    marginTop: 50,
+    marginRight: 50,
   },
 });
 
@@ -112,6 +137,7 @@ const data = {
   projectObjective:
     "สร้างความสัมพันธ์อันดีและความสามัคคีระหว่างนิสิตคณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย",
   activity: "จัดกิจกรรม Blood Day",
+  toFooter: "รองคณบดี (ศ. ดร.เกษม ชูจารุกูล)",
 };
 
 // Create Document Component
@@ -152,7 +178,7 @@ const MyDocument = () => (
           ตามที่{data.from} กรรมการนิสิตคณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
           ได้รับอนุมัติให้จัดโครงการ
           {data.projectName} เพื่อ
-          {data.projectObjective}
+          <Text>{data.projectObjective}</Text>
         </Text>
         <Text style={styles.bodyText}>
           {data.from} กรรมการนิสิตคณะวิศวกรรมศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย
@@ -162,6 +188,29 @@ const MyDocument = () => (
       </View>
       <View style={styles.lastBodySection}>
         <Text style={styles.bodyText}>จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ</Text>
+      </View>
+
+      <View style={styles.presidentSignature}>
+        <View style={styles.signatureSection}>
+          <Text style={styles.signatureText}>(กันตพงศ์ โหราเรือง)</Text>
+          <Text style={styles.signatureText}>หัวหน้านิสิต</Text>
+        </View>
+      </View>
+
+      <View style={styles.bodySection}>
+        <Text>
+          <Text style={styles.bold}>เรียน</Text> {data.toFooter}
+        </Text>
+        <Text style={styles.footerPurpose}>- เพื่อโปรดพิจารณาอนุมัติ</Text>
+
+        <View style={styles.deanSignature}>
+          <View style={styles.signatureSection}>
+            <Text style={styles.signatureText}>
+              (รศ. ดร.สรรเพชญ ชื้อนิธิไพศาล)
+            </Text>
+            <Text style={styles.signatureText}>รองคณบดี</Text>
+          </View>
+        </View>
       </View>
     </Page>
   </Document>
